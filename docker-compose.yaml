@@ -1,0 +1,34 @@
+version: '3'
+services:
+    # Mongo DB for sessions
+    mongo:
+        container_name: app-mongo-db
+        image: mongo:latest
+        command: --bind_ip 0.0.0.0
+        restart: always
+        volumes:
+            # - ./mongod.conf:/etc/mongod.conf
+            - ./db_volume/mongo:/data/db
+        environment: 
+            - MONGO_INITDB_ROOT_USERNAME=${SESSION_MONGODB_USER}
+            - MONGO_INITDB_ROOT_PASSWORD=${SESSION_MONGODB_PASS}
+            - MONGO_INITDB_DATABASE=${SESSION_MONGO_INITDB_DATABASE}
+            - MONGODB_USER=${SESSION_MONGODB_USER}
+            - MONGODB_PASS=${SESSION_MONGODB_PASS}
+        ports:
+            - 4002:27017
+    postgres:
+        container_name: app-postgres-db
+        image: postgres:latest
+        command: -c config_file=/etc/postgresql/postgresql.conf
+        restart: always
+        volumes:
+            - ./db_volume/postgres:/var/lib/postgresql/data
+            - ./postgresql.conf:/etc/postgresql/postgresql.conf
+        environment:
+            - PGDATA=/var/lib/postgresql/data
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+            - POSTGRES_DB=${POSTGRES_DB}
+        ports:
+            - 4001:4001
