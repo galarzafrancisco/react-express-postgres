@@ -18,9 +18,17 @@ const app = require('./app');
 // Load environment
 const config = require('../config.js');
 const port = config.server.backend.port;
-
+console.log('websocket')
+console.log(websocket)
 // Mount the websocket
-websocket.mountServer(server);
+const websocketServer = websocket.mountServer(server);
+websocketServer.on('connection', client => {
+    console.log('New websocket connection');
+    client.emit('pedo')
+
+    client.on('message', data => console.log(data))
+
+})
 // Mount the app
 server.on('request', app.app);
 

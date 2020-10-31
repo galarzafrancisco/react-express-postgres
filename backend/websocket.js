@@ -12,13 +12,13 @@ const WSServer = require('ws').Server;
 // WebSocket
 // =============================================================================
 
-let websocket = null;
+let websocketServer = null;
 mountServer = (server) => {
-    websocket = new WSServer({ server });
-    return websocket
+    websocketServer = new WSServer({ server });
+    return websocketServer
 }
 
 module.exports = {
-    websocket,
+    websocketServer,
     mountServer
 };
