@@ -7,7 +7,8 @@ const websocketUrl = 'ws://localhost:4000';
 const websocket = new ReconnectingWebSocket(websocketUrl);
 
 const initialGlobalState = {
-    websocketStatus: 'disconnected'
+    websocketStatus: 'disconnected',
+    logged: false
 };
 
 

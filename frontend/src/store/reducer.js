@@ -6,6 +6,10 @@ const reducer = (state, action) => {
             return {...state, websocketStatus: 'connecting'}
         case 'WEBSOCKET_DISCONNECTED':
             return {...state, websocketStatus: 'disconnected'}
+        case 'LOGIN':
+            return {...state, logged: true}
+        case 'LOGOUT':
+            return {...state, logged: false}
         default:
             return state
     }

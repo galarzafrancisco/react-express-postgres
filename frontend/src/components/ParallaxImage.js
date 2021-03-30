@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-// import { Parallax } from 'react-parallax';
-import M from 'materialize-css'
+import M from 'materialize-css';
 import useWindowSize from '../utils/useWindowSize';
 
 export const ParallaxImage = () => {

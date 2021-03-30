@@ -4,7 +4,7 @@
 |
 ====================================================================== */
 const router = require('express').Router();
-const logic = require('./logic');
+// const logic = require('./logic');
 
 
 /* ======================================================================
@@ -13,8 +13,7 @@ const logic = require('./logic');
 |
 ====================================================================== */
 router.get('/', (req, res) => {
-    const status = logic.getStatus();
-    res.status(status.code).send(status.message);
+    res.status(200).json({logged: req.session.logged });
 })
 
 module.exports = router;
